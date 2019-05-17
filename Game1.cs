@@ -19,6 +19,7 @@ namespace Shards
         public static Texture2D[] ShardTextures;
         Grid grid;
         public static Rectangle Bounds;
+        public static SpriteFont font;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,6 +44,7 @@ namespace Shards
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+            font = Content.Load<SpriteFont>("Fonts/File");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ShardTextures = new[] { Content.Load<Texture2D>("Jewels/jewel_blue"), Content.Load<Texture2D>("Jewels/jewel_green"), Content.Load<Texture2D>("Jewels/jewel_red"), Content.Load<Texture2D>("Jewels/jewel_violet"), Content.Load<Texture2D>("Jewels/jewel_yellow") };
             LoadTextures(("combo", "combo/combo"));
@@ -51,7 +53,7 @@ namespace Shards
                 LoadTextures(($"number{i.ToString()}",$"combo/{i.ToString()}"));
             }
 
-            grid = new Grid(7, 11);
+            grid = new Grid(7, 10);
         }
 
         protected override void UnloadContent()
@@ -82,20 +84,15 @@ namespace Shards
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.BurlyWood);
-            spriteBatch.Begin();
+            GraphicsDevice.Clear(Color.FromNonPremultiplied(0x1e,0x27,0x2e,255));
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             grid.Draw(spriteBatch);
 
             spriteBatch.End();
 
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }

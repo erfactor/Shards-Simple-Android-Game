@@ -15,7 +15,6 @@ namespace Shards
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
     public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
     {
-        private GestureDetector gestureDetector;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,6 +22,12 @@ namespace Shards
             SetContentView((View)g.Services.GetService(typeof(View)));
             g.Run();
         }
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            Finish();
+        }
     }
+    
 }
 
