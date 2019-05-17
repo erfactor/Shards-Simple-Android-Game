@@ -145,6 +145,13 @@
 /processorParam:TextureFormat=Color
 /build:combo/combo.png
 
+#begin Fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/File.spritefont
+
 #begin Jewels/jewel_blue.png
 /importer:TextureImporter
 /processor:TextureProcessor

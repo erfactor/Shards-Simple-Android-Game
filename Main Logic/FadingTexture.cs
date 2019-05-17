@@ -16,10 +16,14 @@ namespace Shards
 {
     public class FadingTexture : IDrawable
     {
-        Texture2D Texture;
-        Rectangle rectangle;
+        protected Texture2D Texture;
+        protected Rectangle rectangle;
         public bool alive = true;
-        private int visibility = 255;
+        protected int visibility = 255;
+
+        public FadingTexture()
+        {
+        }
 
         public FadingTexture(Texture2D texture, Rectangle rectangle)
         {
@@ -37,7 +41,7 @@ namespace Shards
         }
 
         [Obsolete]
-        public void Draw(SpriteBatch sprite)
+        public virtual void Draw(SpriteBatch sprite)
         {
             sprite.Draw(Texture, position: rectangle.TopLeftCorner, scale: new Vector2(rectangle.width / Texture.Width, rectangle.height / Texture.Height),color:Color.FromNonPremultiplied(255,255,255,visibility));
         }

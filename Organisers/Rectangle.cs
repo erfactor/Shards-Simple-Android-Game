@@ -23,8 +23,8 @@ namespace Shards
             this.width = width;
             this.height = height;
         }
-        
 
+        public Vector2 LeftMid { get { return new Vector2(X, Y+width/2); } }
         public Vector2 TopLeftCorner { get { return new Vector2(X, Y); } }
         public Vector2 TopRightCorner { get { return new Vector2(X + width, Y); } }
         public Vector2 BottomLeftCorner { get { return new Vector2(X, Y + height); } }

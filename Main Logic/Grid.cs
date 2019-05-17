@@ -28,6 +28,7 @@ namespace Shards
         Combo combo;
         public static int combolevel = 0;
         public static bool playerTouch = false;
+        private int score = 0;
         public Grid(int width, int height)
         {
             this.width = width;
@@ -37,7 +38,7 @@ namespace Shards
             PopulateGrid();
             float halfwidth = Game1.Bounds.width / 2;
             float halfheight = Game1.Bounds.height / 2;
-            combo = new Combo(Textures["combo"], new Rectangle(halfwidth/3 , halfheight * 1.3f, halfwidth * 4 / 3, halfheight * 0.6f));
+            combo = new Combo(Textures["combo"], new Rectangle(halfwidth/3 *2 , halfheight * 1.3f, halfwidth * 4 / 3, halfheight * 0.6f));
         }
 
         public void PopulateGrid()
@@ -143,14 +144,6 @@ namespace Shards
                 ToDelete.AddRange(CheckHorizontalLine(i));
             if (ToDelete.Count != 0)
             {
-                foreach (var tuple in ToDelete)
-                {
-                    int x = tuple.x, y = tuple.y;
-                    if (Jewels[x, y] == null) continue;
-                    fadingTextures.Add(new FadingTexture(Jewels[x, y].Texture, Jewels[x, y].rectangle));
-                    tab[x,y] = -1;
-                    Jewels[x,y] = null;
-                }
                 if (playerTouch)
                 {
                     playerTouch = false;
@@ -158,6 +151,18 @@ namespace Shards
                 }
                 else
                     combolevel++;
+
+                foreach (var tuple in ToDelete)
+                {
+                    int x = tuple.x, y = tuple.y;
+                    if (Jewels[x, y] == null) continue;
+                    fadingTextures.Add(new FadingTexture(Jewels[x, y].Texture, Jewels[x, y].rectangle));
+                    fadingTextures.Add(new FadingNumber(100 * combolevel,Jewels[x, y].rectangle));
+                    score += 100 * combolevel;
+                    tab[x,y] = -1;
+                    Jewels[x,y] = null;
+                }
+                
             }
         }
 
@@ -243,11 +248,6 @@ namespace Shards
         {
             if (Jewels == null) return;
 
-            foreach (var fade in fadingTextures)
-            {
-                fade.Draw(sprite);
-            }
-
             for (int i = 0; i < width; i++)
                 for (int j = 0; j < height; j++)
                 {
@@ -255,6 +255,12 @@ namespace Shards
                     Jewels[i,j].Draw(sprite);
                 }
             combo.Draw(sprite);
+
+            foreach (var fade in fadingTextures)
+            {
+                fade.Draw(sprite);
+            }
+            sprite.DrawString(Game1.font, "Score : " + score.ToString(), position: new Vector2(1*side,height*side +50), color: Color.FromNonPremultiplied(255, 255, 255, 255), 0, new Vector2(), scale: 3, SpriteEffects.None, 1);
 
         }
 

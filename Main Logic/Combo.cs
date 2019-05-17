@@ -53,9 +53,9 @@ namespace Shards
         public void Draw(SpriteBatch sprite)
         {
             if (combo > 9 || combo<2) return;
-            sprite.Draw(Texture, position: rectangle.TopLeftCorner, scale: new Vector2(rectangle.width / Texture.Width, rectangle.height / Texture.Height), color: Color.FromNonPremultiplied(255, 255, 255, visibility));
+            sprite.Draw(Texture, position: rectangle.TopLeftCorner + new Vector2(0, 50), scale: new Vector2(rectangle.width / Texture.Width, rectangle.height / Texture.Height)/2, color: Color.FromNonPremultiplied(255, 255, 255, visibility));
             numberTexture = ContentManager.Textures[$"number{combo}"];
-            sprite.Draw(numberTexture, position: rectangle.Move(new Vector2(rectangle.width / 2 - 20, rectangle.height / 2 - 36)).TopLeftCorner, scale: new Vector2(rectangle.width / numberTexture.Width / 4, rectangle.height / numberTexture.Height / 1.65f), color: Color.FromNonPremultiplied(255, 255, 255,Math.Max(0, visibility)));
+            sprite.Draw(numberTexture, position: rectangle.Move(new Vector2(rectangle.width / 4 - 10, rectangle.height / 4 - 18)).TopLeftCorner + new Vector2(0,50), scale: new Vector2(rectangle.width / numberTexture.Width / 4, rectangle.height / numberTexture.Height / 1.65f)/2, color: Color.FromNonPremultiplied(255, 255, 255,Math.Max(0, visibility)));
             
         }
         Texture2D numberTexture;
