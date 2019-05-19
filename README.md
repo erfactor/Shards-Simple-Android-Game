@@ -2,4 +2,5 @@
 
 ## Just download the game and enjoy some satisfying gameplay without ads.
 
-![alt text] (https://github.com/Staccator/Shards-Simple-Android-Game/blob/master/Preview/shardspreview.gif)
+# How it looks
+![alt text](https://github.com/Staccator/Shards-Simple-Android-Game/blob/master/Preview/shardspreview.gif)
